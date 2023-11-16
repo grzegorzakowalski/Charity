@@ -23,21 +23,21 @@ public class InstitutionServiceTests {
     private InstitutionService institutionService;
 
     @Test
-    public void whenDataBaseIsEmpty_getRandomFour_ShouldReturnEmptyList(){
+    public void whenDataBaseIsEmpty_getRandomFour_ShouldReturnFour(){
         Mockito.when(institutionRepository.findAll()).thenReturn(new ArrayList<>());
         List<Institution> actual = institutionService.getRandomFour();
-        assertTrue(actual.isEmpty());
+        assertEquals(4, actual.size());
     }
 
     @Test
-    public void whenInDataBaseIsLessThenFifeRows_getRandomFour_ShouldGiveAll(){
-        List<Institution> expected = new ArrayList<>();
-        expected.add(new Institution());
-        expected.add(new Institution());
-        expected.add(new Institution());
-        Mockito.when(institutionRepository.findAll()).thenReturn(expected);
+    public void whenInDataBaseIsLessThenFifeRows_getRandomFour_ShouldGiveFour(){
+        List<Institution> dataBase = new ArrayList<>();
+        dataBase.add(new Institution());
+        dataBase.add(new Institution());
+        dataBase.add(new Institution());
+        Mockito.when(institutionRepository.findAll()).thenReturn(dataBase);
         List<Institution> actual = institutionService.getRandomFour();
-        assertEquals(expected, actual);
+        assertEquals(4, actual.size());
     }
 
     @Test
