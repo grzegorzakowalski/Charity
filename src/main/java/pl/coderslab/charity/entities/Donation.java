@@ -1,7 +1,6 @@
 package pl.coderslab.charity.entities;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -9,6 +8,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Entity
+@Data
 public class Donation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
