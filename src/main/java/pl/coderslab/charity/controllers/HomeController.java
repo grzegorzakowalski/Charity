@@ -20,6 +20,8 @@ public class HomeController {
         model.addAttribute("institutionList", institutionService.getRandomFour());
         Integer bagsAmount = donationRepository.getAmountOfBags();
         model.addAttribute("bagsAmount",bagsAmount == null? 0 : bagsAmount);
+        Integer donationsAmount = donationRepository.getAmountOfDonations();
+        model.addAttribute("donationsAmount", donationsAmount );
         return "index";
     }
 }
