@@ -1,6 +1,7 @@
 package pl.coderslab.charity.entities;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -23,6 +24,7 @@ public class Donation {
     @Column(name = "zip_code")
     private String zipCode;
     @Column(name = "pick_up_date")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate pickUpDate;
     @Column(name = "pick_up_time")
     private LocalTime pickUpTime;
