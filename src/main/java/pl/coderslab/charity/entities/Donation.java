@@ -19,6 +19,8 @@ public class Donation {
     private List<Category> categories;
     @ManyToOne
     private Institution institution;
+    @Column(name = "phone_number")
+    private String phoneNumber;
     private String street;
     private String city;
     @Column(name = "zip_code")
