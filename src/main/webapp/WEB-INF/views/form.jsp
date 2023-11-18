@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: kowal
@@ -44,6 +45,14 @@
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
+
+                <form:form method="post" modelAttribute="donation">
+<%--                !!!@!##!#@@!!#@!!!!!--%>
+                <div class="form-group form-group--checkbox">
+                    <label>
+                        <form:checkbox path="categories" value="${categories.get(0)}"/>
+                    </label>
+                </form:form>
 
                 <div class="form-group form-group--checkbox">
                     <label>
