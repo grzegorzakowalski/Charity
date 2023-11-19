@@ -225,4 +225,21 @@ document.addEventListener("DOMContentLoaded", function() {
   if (form !== null) {
     new FormSteps(form);
   }
+
+  // Registration validation
+  const registrationButton = document.querySelector("#register");
+  registrationButton.addEventListener("click",e =>{
+    e.preventDefault();
+    const password = document.querySelector("#original");
+    const confirmPassword = document.querySelector("#confirm");
+    if( password.value === confirmPassword.value){
+      password.parentElement.parentElement.submit();
+    } else {
+      if( confirmPassword.parentElement.children.length < 2){
+        const span = document.createElement("span");
+        span.innerText = "Hasła nie są identyczne";
+        confirmPassword.parentElement.appendChild(span);
+      }
+    }
+  });
 });
