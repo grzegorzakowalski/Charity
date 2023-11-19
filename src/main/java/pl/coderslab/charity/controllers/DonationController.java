@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.charity.CategoryRepository;
 import pl.coderslab.charity.entities.Donation;
 import pl.coderslab.charity.repositories.DonationRepository;
@@ -22,5 +23,11 @@ public class DonationController {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("institutions",institutionRepository.findAll());
         return "form";
+    }
+
+    @PostMapping("/form")
+    public String donationForm(Donation donation){
+        donationRepository.save(donation);
+        return "redirect:/";
     }
 }
