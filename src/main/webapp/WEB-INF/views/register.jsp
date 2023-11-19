@@ -33,6 +33,12 @@
         <div class="form-group">
             <input type="password" id="confirm" placeholder="Powtórz hasło" />
         </div>
+        <div class="form-group">
+            <form:input path="firstName" placeholder="Jan"/>
+        </div>
+        <div class="form-group">
+            <form:input path="lastName" placeholder="Kowalski"/>
+        </div>
 
         <div class="form-group form-group--buttons">
             <a href="<c:url value="/login"/>" class="btn btn--without-border">Zaloguj się</a>
