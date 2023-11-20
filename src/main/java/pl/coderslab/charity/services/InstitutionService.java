@@ -3,6 +3,7 @@ package pl.coderslab.charity.services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entities.Institution;
+import pl.coderslab.charity.pojo.InstitutionPair;
 import pl.coderslab.charity.repositories.InstitutionRepository;
 
 import java.util.ArrayList;
@@ -43,6 +44,9 @@ public class InstitutionService {
         return Institution.builder().name("Dołącz do grona naszych fundacji!").description("Skontaktuj się z nami i dołącz do grona fundacji.").build();
     }
 
+    public List<InstitutionPair> getAllInstitutionsAsPairs(){
+        List<InstitutionPair> institutionPairs = new ArrayList<>();
 
-
+        return institutionPairs;
+    }
 }
