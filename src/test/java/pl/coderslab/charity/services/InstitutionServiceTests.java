@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import pl.coderslab.charity.entities.Institution;
+import pl.coderslab.charity.pojo.InstitutionPair;
 import pl.coderslab.charity.repositories.InstitutionRepository;
 
 import java.util.ArrayList;
@@ -51,6 +52,22 @@ public class InstitutionServiceTests {
         Mockito.when(institutionRepository.findAll()).thenReturn(dataBase);
         List<Institution> actual = institutionService.getRandomFour();
         assertEquals(4, actual.size());
+    }
+
+    @Test
+    public void whenDataBaseIsEmpty_getAllInstitutionsAsPairs_ShouldReturnListWithOnePair(){
+        Mockito.when(institutionRepository.findAll()).thenReturn(new ArrayList<>());
+        List<InstitutionPair> actual = institutionService.getAllInstitutionsAsPairs();
+        assertEquals(1, actual.size());
+    }
+
+    @Test
+    public void whenDataInDataBaseIsOddAmount_getAllInstitutionsAsPairs_ShouldFillLastWithFillerInstitution(){
+
+    }
+    @Test
+    public void whenDataInDataBaseIsEvenAmount_getAllInstitutionsAsPairs_ShouldReturnAllDataPaired(){
+
     }
 
 }
