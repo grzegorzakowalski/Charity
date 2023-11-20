@@ -63,11 +63,22 @@ public class InstitutionServiceTests {
 
     @Test
     public void whenDataInDataBaseIsOddAmount_getAllInstitutionsAsPairs_ShouldFillLastWithFillerInstitution(){
-
+        Institution institution = new Institution();
+        List<Institution> list = new ArrayList<>();
+        list.add(institution);
+        Mockito.when(institutionRepository.findAll()).thenReturn(list);
+        List<InstitutionPair> actual = institutionService.getAllInstitutionsAsPairs();
+        assertEquals(2, actual.get(0).getInstitutionPair().size());
     }
     @Test
     public void whenDataInDataBaseIsEvenAmount_getAllInstitutionsAsPairs_ShouldReturnAllDataPaired(){
-
+        List<Institution> list = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            list.add(new Institution());
+        }
+        Mockito.when(institutionRepository.findAll()).thenReturn(list);
+        List<InstitutionPair> actual = institutionService.getAllInstitutionsAsPairs();
+        assertEquals(2, actual.get(actual.size() - 1).getInstitutionPair().size() );
     }
 
 }

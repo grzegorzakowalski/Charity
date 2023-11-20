@@ -52,8 +52,24 @@ public class InstitutionService {
             institutionPair.getInstitutionPair().add(getFillerInstitution());
             institutionPair.getInstitutionPair().add(getFillerInstitution());
             institutionPairs.add(institutionPair);
+        } else {
+            if ( all.size() == 1){
+                InstitutionPair tmp = new InstitutionPair();
+                tmp.getInstitutionPair().add(all.get(0));
+                tmp.getInstitutionPair().add(getFillerInstitution());
+                institutionPairs.add(tmp);
+            } else {
+                for (int i = 1; i < all.size(); i++) {
+                    InstitutionPair tmp = new InstitutionPair();
+                    tmp.getInstitutionPair().add(all.get(i - 1));
+                    tmp.getInstitutionPair().add(all.get(i));
+                    institutionPairs.add(tmp);
+                }
+                if (institutionPairs.get(institutionPairs.size() - 1).getInstitutionPair().size() == 1){
+                    institutionPairs.get(institutionPairs.size() - 1).getInstitutionPair().add(getFillerInstitution());
+                }
+            }
         }
-
         return institutionPairs;
     }
 }
