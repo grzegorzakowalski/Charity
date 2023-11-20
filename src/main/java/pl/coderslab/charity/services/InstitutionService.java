@@ -38,12 +38,16 @@ public class InstitutionService {
     }
 
     /**
-     * @return Institution filled with text encouraging to join as institution;
+     * @return Institution filled with text encouraging to join as institution.
      */
     private Institution getFillerInstitution(){
         return Institution.builder().name("Dołącz do grona naszych fundacji!").description("Skontaktuj się z nami i dołącz do grona fundacji.").build();
     }
 
+    /**
+     * Gets all institutions from database. Puts this data into List of paired elements. If any pair wouldn't be full it fills it with filler. If db is empty returns list with one pair of fillers.
+     * @return List of paired institutions.
+     */
     public List<InstitutionPair> getAllInstitutionsAsPairs(){
         List<InstitutionPair> institutionPairs = new ArrayList<>();
         List<Institution> all = institutionRepository.findAll();
