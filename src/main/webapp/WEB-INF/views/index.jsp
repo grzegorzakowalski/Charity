@@ -63,6 +63,7 @@
     </div>
 
     <sec:authorize access="isAnonymous()"> <a href="<c:url value="/register"/>" class="btn btn--large">Załóż konto</a> </sec:authorize>
+    <sec:authorize access="isAuthenticated()"> <a href="<c:url value="/form"/>" class="btn btn--large">Przekaż dary</a> </sec:authorize>
 </section>
 
 <section class="about-us">
