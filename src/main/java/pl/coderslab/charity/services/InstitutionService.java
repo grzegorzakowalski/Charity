@@ -46,6 +46,13 @@ public class InstitutionService {
 
     public List<InstitutionPair> getAllInstitutionsAsPairs(){
         List<InstitutionPair> institutionPairs = new ArrayList<>();
+        List<Institution> all = institutionRepository.findAll();
+        if(all.isEmpty()){
+            InstitutionPair institutionPair = new InstitutionPair();
+            institutionPair.getInstitutionPair().add(getFillerInstitution());
+            institutionPair.getInstitutionPair().add(getFillerInstitution());
+            institutionPairs.add(institutionPair);
+        }
 
         return institutionPairs;
     }
