@@ -32,6 +32,7 @@
         <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
         <li><a href="#" class="btn btn--without-border">O nas</a></li>
         <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>
+        <sec:authorize access="isAuthenticated()"><li><a href="<c:url value="/form"/>" class="btn btn--large">Przekaż dary</a></li></sec:authorize>
         <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
     </ul>
 </nav>
