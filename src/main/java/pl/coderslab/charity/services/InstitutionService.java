@@ -22,8 +22,7 @@ public class InstitutionService {
         List<Institution> all = institutionRepository.findAll();
         if( all.size() < 5){
             while(all.size() < 4){
-                Institution temp = Institution.builder().name("Dołącz do grona naszych fundacji!").description("Skontaktuj się z nami i dołącz do grona fundacji.").build();
-                all.add(temp);
+                all.add(getFillerInstitution());
             }
             return all;
         }
@@ -36,4 +35,14 @@ public class InstitutionService {
         }
         return result;
     }
+
+    /**
+     * @return Institution filled with text encouraging to join as institution;
+     */
+    private Institution getFillerInstitution(){
+        return Institution.builder().name("Dołącz do grona naszych fundacji!").description("Skontaktuj się z nami i dołącz do grona fundacji.").build();
+    }
+
+
+
 }
