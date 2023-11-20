@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
-<c:import url="header.jsp"/>
+<c:import url="nav.jsp"/>
 <section class="form--steps">
     <div class="form--steps-instructions">
         <div class="form--steps-container">
