@@ -32,13 +32,16 @@ public class PanelController {
 
     @PostMapping("/user")
     public String changeUserData(User user){
-
+        user.setPassword(userRepository.findUserByUsername(user.getUsername()).getPassword());
+        userRepository.save(user);
         return "redirect:/panel/user";
     }
 
     @PostMapping("/password")
     public String changeUsersPassword(@AuthenticationPrincipal CurrentUser currentUser, @RequestParam(name = "password") String password){
-
+        User user = currentUser.getUser();
+        user.setPassword(passwordEncoder.encode(password));
+        userRepository.save(user);
         return "redirect:/panel/user";
     }
 }
