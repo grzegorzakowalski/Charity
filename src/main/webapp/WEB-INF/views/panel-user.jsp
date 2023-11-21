@@ -26,8 +26,8 @@
             <em>${bags}</em>
             <h3>Oddanych worków</h3>
             <p>
-                <c:if test="${bags == 0}">Nie możemy się doczekać twojej pierwszej dotacji!</c:if>
-                <c:if test="${bags >= 0}">Dziękujemy za każdą dotację i mamy nadzieję, że będzie ich jeszcze więcej!</c:if>
+                <c:if test="${bags == 0}">Nie możemy się doczekać twojej pierwszej dotacji! Nie zwlekaj i podziel się tym, co tobie już nie potrzebne.</c:if>
+                <c:if test="${bags > 0}">Dziękujemy za każdą dotację i mamy nadzieję, że będzie ich jeszcze więcej!</c:if>
             </p>
         </div>
 
@@ -35,8 +35,8 @@
             <em>${donations}</em>
             <h3>Przekazanych darów</h3>
             <p>
-                <c:if test="${bags == 0}">Nie możemy się doczekać twojej pierwszej dotacji!</c:if>
-                <c:if test="${bags >= 0}">Dziękujemy za każdą dotację i mamy nadzieję, że będzie ich jeszcze więcej!</c:if>
+                <c:if test="${bags == 0}">Nie możemy się doczekać twojej pierwszej dotacji! Nie zwlekaj i podziel się tym, co tobie już nie potrzebne.</c:if>
+                <c:if test="${bags > 0}">Dziękujemy za każdą dotację i mamy nadzieję, że będzie ich jeszcze więcej!</c:if>
             </p>
         </div>
 
