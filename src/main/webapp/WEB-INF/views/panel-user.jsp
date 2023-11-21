@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: kowal
@@ -100,6 +101,13 @@
         </div>
 
     </form>
+    <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <a href="<c:url value="/panel/crud"/>">
+            <button class="btn" type="button">
+                Przejdź do zarządzania użytkownikami
+            </button>
+        </a>
+    </sec:authorize>
 </section>
 <c:import url="footer.jsp"/>
 </body>
