@@ -10,8 +10,8 @@
 <nav class="container container--70">
     <sec:authorize access="isAnonymous()">
         <ul class="nav--actions">
-            <li><a href="<c:url value="/login"/>" class="btn btn--small btn--without-border">Zaloguj</a></li>
-            <li><a href="<c:url value="/register"/>" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            <li><a href="<c:url value="/login"/>" class="btn btn--small btn--without-border <c:if test="${active.equals('login')}">active</c:if>">Zaloguj</a></li>
+            <li><a href="<c:url value="/register"/>" class="btn btn--small btn--highlighted <c:if test="${active.equals('register')}">active</c:if>">Załóż konto</a></li>
         </ul>
     </sec:authorize>
     <sec:authorize access="isAuthenticated()">
@@ -27,12 +27,12 @@
         </ul>
     </sec:authorize>
 
-    <ul>
-        <li><a href="<c:url value="/"/>" class="btn btn--without-border active">Start</a></li>
-        <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
-        <li><a href="#" class="btn btn--without-border">O nas</a></li>
-        <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>
-        <sec:authorize access="isAuthenticated()"><li><a href="<c:url value="/form"/>" class="btn btn--without-border">Przekaż dary</a></li></sec:authorize>
-        <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
+    <ul><c:if test="${active.equals()}">active</c:if>
+        <li><a href="<c:url value="/"/>" class="btn btn--without-border <c:if test="${active.equals('home')}">active</c:if>">Start</a></li>
+        <li><a href="#" class="btn btn--without-border <c:if test="${active.equals()}">active</c:if>">O co chodzi?</a></li>
+        <li><a href="#" class="btn btn--without-border <c:if test="${active.equals()}">active</c:if>">O nas</a></li>
+        <li><a href="<c:url value="/institutions"/>" class="btn btn--without-border <c:if test="${active.equals('institutions')}">active</c:if>">Fundacje i organizacje</a></li>
+        <sec:authorize access="isAuthenticated()"><li><a href="<c:url value="/form"/>" class="btn btn--without-border <c:if test="${active.equals('form')}">active</c:if>">Przekaż dary</a></li></sec:authorize>
+        <li><a href="#" class="btn btn--without-border <c:if test="${active.equals()}">active</c:if>">Kontakt</a></li>
     </ul>
 </nav>

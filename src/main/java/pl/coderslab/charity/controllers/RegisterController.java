@@ -21,6 +21,7 @@ public class RegisterController {
     public String registrationFormView(Model model, @RequestParam(required = false, name = "exist") String exist){
         model.addAttribute("user", new User());
         model.addAttribute("exist", exist);
+        model.addAttribute("active","register");
         return "register";
     }
 

@@ -22,6 +22,7 @@ public class HomeController {
         model.addAttribute("bagsAmount",bagsAmount == null? 0 : bagsAmount);
         Integer donationsAmount = donationRepository.getAmountOfDonations();
         model.addAttribute("donationsAmount", donationsAmount );
+        model.addAttribute("active","home");
         return "index";
     }
 }
