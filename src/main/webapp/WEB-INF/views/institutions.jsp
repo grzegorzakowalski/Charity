@@ -40,17 +40,6 @@
                     </div>
                 </li>
             </c:forEach>
-<%--            <li>--%>
-<%--                <div class="col">--%>
-<%--                    <div class="title">${institutionList.get(2).name}</div>--%>
-<%--                    <div class="subtitle">${institutionList.get(2).description}</div>--%>
-<%--                </div>--%>
-<%--                <div class="col">--%>
-<%--                    <div class="title">${institutionList.get(3).name}</div>--%>
-<%--                    <div class="subtitle">${institutionList.get(3).description}</div>--%>
-<%--                </div>--%>
-
-<%--            </li>--%>
 
         </ul>
     </div>

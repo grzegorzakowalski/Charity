@@ -27,12 +27,12 @@
         </ul>
     </sec:authorize>
 
-    <ul><c:if test="${active.equals()}">active</c:if>
+    <ul>
         <li><a href="<c:url value="/"/>" class="btn btn--without-border <c:if test="${active.equals('home')}">active</c:if>">Start</a></li>
-        <li><a href="#" class="btn btn--without-border <c:if test="${active.equals()}">active</c:if>">O co chodzi?</a></li>
-        <li><a href="#" class="btn btn--without-border <c:if test="${active.equals()}">active</c:if>">O nas</a></li>
+        <li><a href="#" class="btn btn--without-border <c:if test="${active.equals('about')}">active</c:if>">O co chodzi?</a></li>
+        <li><a href="#" class="btn btn--without-border <c:if test="${active.equals('aboutUs')}">active</c:if>">O nas</a></li>
         <li><a href="<c:url value="/institutions"/>" class="btn btn--without-border <c:if test="${active.equals('institutions')}">active</c:if>">Fundacje i organizacje</a></li>
         <sec:authorize access="isAuthenticated()"><li><a href="<c:url value="/form"/>" class="btn btn--without-border <c:if test="${active.equals('form')}">active</c:if>">Przekaż dary</a></li></sec:authorize>
-        <li><a href="#" class="btn btn--without-border <c:if test="${active.equals()}">active</c:if>">Kontakt</a></li>
+        <li><a href="#" class="btn btn--without-border <c:if test="${active.equals('contact')}">active</c:if>">Kontakt</a></li>
     </ul>
 </nav>

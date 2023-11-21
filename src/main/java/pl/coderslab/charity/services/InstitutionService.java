@@ -63,10 +63,12 @@ public class InstitutionService {
                 tmp.getInstitutionPair().add(getFillerInstitution());
                 institutionPairs.add(tmp);
             } else {
-                for (int i = 1; i < all.size(); i++) {
+                for (int i = 1; i <= all.size(); i+=2) {
                     InstitutionPair tmp = new InstitutionPair();
                     tmp.getInstitutionPair().add(all.get(i - 1));
-                    tmp.getInstitutionPair().add(all.get(i));
+                    if( i != all.size()){
+                        tmp.getInstitutionPair().add(all.get(i));
+                    }
                     institutionPairs.add(tmp);
                 }
                 if (institutionPairs.get(institutionPairs.size() - 1).getInstitutionPair().size() == 1){
