@@ -16,13 +16,13 @@ public class SecurityConfig {
     @Bean
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception{
         return http.authorizeRequests()
-                .antMatchers("/panel").hasAnyRole("USER","ADMIN")
+                .antMatchers("/panel/**").hasAnyRole("USER","ADMIN")
                 .anyRequest().permitAll()
                 .and()
                 .csrf().disable()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/panel/user")
                 .permitAll()
                 .and()
                 .logout()
