@@ -17,6 +17,12 @@ import pl.coderslab.charity.repositories.UserRepository;
 import pl.coderslab.charity.security.CurrentUser;
 import pl.coderslab.charity.services.UserService;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Stream;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/panel")
@@ -52,11 +58,32 @@ public class PanelController {
     }
 
     @GetMapping("/crud")
-    public String adminCrudView(Model model, @AuthenticationPrincipal CurrentUser currentUser){
+    public String adminCrudView(Model model, @AuthenticationPrincipal CurrentUser currentUser,
+                                @RequestParam(name = "msg", required = false) String msg){
         model.addAttribute("users", userService.getAllWithout(currentUser.getUser()));
         model.addAttribute("donations", donationRepository.findAll());
         model.addAttribute("institutions", institutionRepository.findAll());
         model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("msg", msg);
         return "panel-crud";
+    }
+
+    @GetMapping("/user/add")
+    public String addUserView(Model model, @RequestParam(name = "exist", required = false) String exist){
+        model.addAttribute("user", new User());
+        model.addAttribute("roles", Stream.of("ROLE_ADMIN","ROLE_USER").toList());
+        model.addAttribute("exist", exist);
+        return "panel-user-add";
+    }
+
+    @PostMapping("/user/add")
+    public String addUser(User user){
+        if( userRepository.findUserByUsername(user.getUsername()) != null){
+            return "redirect:/panel/user/add?exist=true";
+        }
+        user.setId(null);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+        return "redirect:/panel/crud?msg=added";
     }
 }
