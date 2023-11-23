@@ -18,6 +18,7 @@
 <header>
 <c:import url="nav.jsp"/>
 </header>
+<c:if test="${ msg != null}"><span>${msg} successful</span></c:if>
 <section class="login-page">
     <div class="steps">
         <h2>Lista użytkowników:</h2>
