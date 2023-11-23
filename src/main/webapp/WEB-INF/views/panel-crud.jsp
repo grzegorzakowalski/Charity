@@ -46,6 +46,20 @@
         <a href="<c:url value="/panel/intitution/add"/>"><button class="btn">Dodaj instytucję</button> </a>
     </div>
 </section>
+<section class="login-page">
+    <div class="steps">
+        <h2>Lista dotacji:</h2>
+        <c:forEach items="${donations}" var="donation" varStatus="i">
+            <div class="form-group form-group--inline">
+                    ${i.count}. ${donation}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="<c:url value="/panel/donation/modify?id=${institution.id}"/>"><button type="button" class="btn btn--small">Modyfikuj</button></a>&nbsp;&nbsp;
+                <a href="<c:url value="/panel/donation/delete?id=${institution.id}"/>"><button type="button" class="btn btn--small btn--highlighted btn--delete" >Usuń</button></a>
+            </div>
+            <br>
+        </c:forEach>
+        <a href="<c:url value="/panel/donation/add"/>"><button class="btn">Dodaj dotację</button> </a>
+    </div>
+</section>
 
 <c:import url="footer.jsp"/>
 </body>
