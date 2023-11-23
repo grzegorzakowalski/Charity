@@ -1836,3 +1836,8 @@ footer .bottom-line--icons a img {
 .btn--delete{
   border-color: red;
 }
+
+.success{
+  font-size: medium;
+  color: forestgreen;
+}

@@ -64,7 +64,7 @@ public class PanelController {
         model.addAttribute("donations", donationRepository.findAll());
         model.addAttribute("institutions", institutionRepository.findAll());
         model.addAttribute("categories", categoryRepository.findAll());
-        model.addAttribute("msg", msg);
+        model.addAttribute("msg", msg.replaceAll("_", " "));
         return "panel-crud";
     }
 
@@ -84,6 +84,6 @@ public class PanelController {
         user.setId(null);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
-        return "redirect:/panel/crud?msg=added";
+        return "redirect:/panel/crud?msg=user_added";
     }
 }
