@@ -96,7 +96,7 @@
                 </label>
             </div>
             <div class="form-group form-group--buttons">
-                <button type="submit" class="btn">Zatwierdź</button>
+                <button id="register" type="submit" class="btn">Zatwierdź</button>
             </div>
         </div>
 
