@@ -22,14 +22,28 @@
     <div class="steps">
         <h2>Lista użytkowników:</h2>
         <c:forEach items="${users}" var="user" varStatus="i">
-        <div class="form-group form-group--inline" style="font-weight: 600; font-size: medium">
+        <div class="form-group form-group--inline admin">
                 ${i.count}. ${user.username} (${user.role}) - ${user.firstName} ${user.lastName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="<c:url value="/panel/user/modify?id=${user.id}"/>"><button type="button" class="btn btn--small">Modyfikuj</button></a>&nbsp;&nbsp;
-                    <a href="<c:url value="/panel/user/delete?id=${user.id}"/>"><button type="button" class="btn btn--small btn--highlighted" style="border-color: red">Usuń</button></a>
+                    <a href="<c:url value="/panel/user/delete?id=${user.id}"/>"><button type="button" class="btn btn--small btn--highlighted btn--delete" >Usuń</button></a>
         </div>
         <br>
         </c:forEach>
         <a href="<c:url value="/panel/user/add"/>"><button class="btn ">Dodaj użytkownika</button></a>
+    </div>
+</section>
+<section class="login-page">
+    <div class="steps">
+        <h2>Lista instytucji:</h2>
+        <c:forEach items="${institutions}" var="institution" varStatus="i">
+            <div class="form-group form-group--inline admin">
+                ${i.count}. ${institution.name} - ${institution.description}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="<c:url value="/panel/institution/modify?id=${institution.id}"/>"><button type="button" class="btn btn--small">Modyfikuj</button></a>&nbsp;&nbsp;
+                <a href="<c:url value="/panel/institution/delete?id=${institution.id}"/>"><button type="button" class="btn btn--small btn--highlighted btn--delete" >Usuń</button></a>
+            </div>
+            <br>
+        </c:forEach>
+        <a href="<c:url value="/panel/intitution/add"/>"><button class="btn">Dodaj instytucję</button> </a>
     </div>
 </section>
 
