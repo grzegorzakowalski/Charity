@@ -52,8 +52,11 @@ public class PanelController {
     }
 
     @GetMapping("/crud")
-    public String adminCrudView(Model model){
-
+    public String adminCrudView(Model model, @AuthenticationPrincipal CurrentUser currentUser){
+        model.addAttribute("users", userService.getAllWithout(currentUser.getUser()));
+        model.addAttribute("donations", donationRepository.findAll());
+        model.addAttribute("institutions", institutionRepository.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "panel-crud";
     }
 }
