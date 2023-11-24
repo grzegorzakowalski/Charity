@@ -76,8 +76,8 @@ public class PanelController {
         return "panel-user-add";
     }
 
-    @PostMapping("/user/add")
-    public String addUser(User user){
+    @PostMapping("/user/add") // TODO fix relogging bug
+    public String addUser(@RequestParam User user){
         if( userRepository.findUserByUsername(user.getUsername()) != null){
             return "redirect:/panel/user/add?exist=true";
         }
