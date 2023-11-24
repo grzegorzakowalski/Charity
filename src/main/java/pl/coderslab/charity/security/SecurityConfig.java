@@ -16,7 +16,7 @@ public class SecurityConfig {
     @Bean
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception{
         return http.authorizeRequests()
-                .antMatchers("panel/crud").hasRole("ADMIN")
+                .antMatchers("/panel/crud").hasRole("ADMIN")
                 .antMatchers("/panel/**").hasAnyRole("USER","ADMIN")
                 .anyRequest().permitAll()
                 .and()
