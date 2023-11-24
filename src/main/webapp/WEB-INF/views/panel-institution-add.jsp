@@ -28,11 +28,11 @@
             <form:input path="name" placeholder="Nazwa"/>
         </div>
         <div class="form-group">
-            <form:password path="description" id="original" placeholder="Krótki opis"/>
+            <form:textarea path="description" id="original" placeholder="Krótki opis"/>
         </div>
 
         <div class="form-group form-group--buttons">
-            <button class="btn" type="submit">Dodaj użytkownika</button>
+            <button class="btn" type="submit">Dodaj instytucję</button>
         </div>
     </form:form>
 </section>

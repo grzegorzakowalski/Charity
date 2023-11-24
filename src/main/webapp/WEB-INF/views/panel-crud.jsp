@@ -45,7 +45,7 @@
             </div>
             <br>
         </c:forEach>
-        <a href="<c:url value="/panel/intitution/add"/>"><button class="btn">Dodaj instytucję</button> </a>
+        <a href="<c:url value="/panel/institution/add"/>"><button class="btn">Dodaj instytucję</button> </a>
     </div>
 </section>
 <section class="login-page">
