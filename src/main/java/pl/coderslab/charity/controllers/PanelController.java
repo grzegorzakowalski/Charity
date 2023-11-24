@@ -93,4 +93,10 @@ public class PanelController {
         model.addAttribute("institution", new Institution());
         return "panel-institution-add";
     }
+
+    @PostMapping("/institution/add")
+    public String addInstitution(Institution institution){
+        institutionRepository.save(institution);
+        return "redirect:/panel/crud?msg=institution_added";
+    }
 }
