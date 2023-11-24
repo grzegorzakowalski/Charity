@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.CategoryRepository;
+import pl.coderslab.charity.entities.Institution;
 import pl.coderslab.charity.entities.User;
 import pl.coderslab.charity.repositories.DonationRepository;
 import pl.coderslab.charity.repositories.InstitutionRepository;
@@ -85,5 +86,11 @@ public class PanelController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return "redirect:/panel/crud?msg=user_added";
+    }
+
+    @GetMapping("/institution/add")
+    public String addInstitutionView(Model model){
+        model.addAttribute("institution", new Institution());
+        return "panel-institution-add";
     }
 }
