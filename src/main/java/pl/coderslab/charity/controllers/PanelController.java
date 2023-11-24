@@ -64,7 +64,7 @@ public class PanelController {
         model.addAttribute("donations", donationRepository.findAll());
         model.addAttribute("institutions", institutionRepository.findAll());
         model.addAttribute("categories", categoryRepository.findAll());
-        model.addAttribute("msg", msg.replaceAll("_", " "));
+        model.addAttribute("msg", msg != null ? msg.replaceAll("_", " ") : null);
         return "panel-crud";
     }
 
