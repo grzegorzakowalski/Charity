@@ -113,9 +113,8 @@ public class PanelController {
     }
 
     @GetMapping("/user/delete")
-    public String deleteUserConfirmationView(Model model, @RequestParam(name = "id")long id){
-        Optional<User> byId = userRepository.findById(id);
-        User user = byId.orElse(null);
+    public String deleteUserConfirmationView(Model model, @RequestParam(name = "id") long id){
+        User user = userRepository.findById(id).orElse(null);
         if( user == null){
             return "redirect:/panel/crud?error=user_not_found";
         }
@@ -126,6 +125,11 @@ public class PanelController {
     @PostMapping("/user/delete")
     public String deleteUser(@RequestParam(name = "id") long id){
         User user = userRepository.findById(id).orElse(null);
+        if( user == null){
+            return "redirect:/panel/crud?error=user_not_found";
+        }
+        userRepository.delete(user);
+        return "redirect:/panel/crud?msg=user_deleted";
     }
 
     @GetMapping("/institution/add")
