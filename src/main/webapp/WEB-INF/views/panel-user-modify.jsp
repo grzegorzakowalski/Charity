@@ -22,11 +22,6 @@
 </header>
 
 <section class="login-page">
-    <c:if test="${user == null}">
-        <h2>Coś poszło nie tak!</h2>
-        <a href="<c:url value="/panel/crud"/>"><button class="btn" type="button">Wróć</button> </a>
-    </c:if>
-    <c:if test="${user != null}">
     <h2>Zmodyfikuj użytkownika</h2>
     <form:form method="post" modelAttribute="user">
         <div class="form-group">
@@ -57,7 +52,6 @@
             <button class="btn" type="submit">Zmodyfikuj użytkownika</button>
         </div>
     </form:form>
-    </c:if>
 </section>
 <c:import url="footer.jsp"/>
 </body>
