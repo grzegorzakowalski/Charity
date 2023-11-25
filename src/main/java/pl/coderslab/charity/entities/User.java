@@ -20,4 +20,6 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER)
     private List<Donation> donations;
     private String role;
+    @Column(name = "is_active")
+    private boolean isActive;
 }

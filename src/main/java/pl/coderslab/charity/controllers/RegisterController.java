@@ -31,6 +31,7 @@ public class RegisterController {
             user.setRole("ROLE_USER");
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setDonations(new ArrayList<>());
+            user.setActive(true);
             userRepository.save(user);
             return "redirect:/";
         }
