@@ -112,6 +112,22 @@ public class PanelController {
         return "redirect:/panel/crud?msg=user_modify";
     }
 
+    @GetMapping("/user/delete")
+    public String deleteUserConfirmationView(Model model, @RequestParam(name = "id")long id){
+        Optional<User> byId = userRepository.findById(id);
+        User user = byId.orElse(null);
+        if( user == null){
+            return "redirect:/panel/crud?error=user_not_found";
+        }
+        model.addAttribute("user", user);
+        return "panel-user-delete";
+    }
+
+    @PostMapping("/user/delete")
+    public String deleteUser(@RequestParam(name = "id") long id){
+        User user = userRepository.findById(id).orElse(null);
+    }
+
     @GetMapping("/institution/add")
     public String addInstitutionView(Model model){
         model.addAttribute("institution", new Institution());
