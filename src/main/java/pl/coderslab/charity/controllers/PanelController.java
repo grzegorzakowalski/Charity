@@ -98,8 +98,7 @@ public class PanelController {
 
     @PostMapping("/user/modify")
     public String modifyUser(User user){
-        Optional<User> userFromDb = userRepository.findById(user.getId());
-        User oldUser = userFromDb.orElse(null);
+        User oldUser = userRepository.findById(user.getId()).orElse(null);
         if( oldUser == null){
             return "redirect:/panel/crud?error=user_not_found";
         }
@@ -142,5 +141,15 @@ public class PanelController {
     public String addInstitution(Institution institution){
         institutionRepository.save(institution);
         return "redirect:/panel/crud?msg=institution_added";
+    }
+
+    @GetMapping("/institution/modify")
+    public String modifyInstitutionView(Model model, @RequestParam(name = "id") long id){
+        Institution institution = institutionRepository.findById(id).orElse(null);
+        if( institution == null){
+            return "redirect:/panel/crud?error=institution_not_found";
+        }
+        model.addAttribute("institution", institution);
+        return "panel-institution-modify";
     }
 }
