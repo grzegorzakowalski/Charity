@@ -26,7 +26,7 @@
         <h2>Lista użytkowników:</h2>
         <c:forEach items="${users}" var="user" varStatus="i">
         <div class="form-group form-group--inline admin">
-                ${i.count}. ${user.username} (${user.role}) - ${user.firstName} ${user.lastName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                ${i.count}. ${user.username} (${user.role}) - ${user.firstName} ${user.lastName} active: ${user.active}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="<c:url value="/panel/user/modify?id=${user.id}"/>"><button type="button" class="btn btn--small">Modyfikuj</button></a>&nbsp;&nbsp;
                     <a href="<c:url value="/panel/user/delete?id=${user.id}"/>"><button type="button" class="btn btn--small btn--highlighted btn--delete" >Usuń</button></a>
         </div>

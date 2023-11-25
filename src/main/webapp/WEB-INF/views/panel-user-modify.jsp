@@ -41,6 +41,12 @@
             <form:input path="lastName"/>
         </div>
         <div class="form-group">
+            Czy ma możliwość logowania się:<br>
+            <form:select path="active">
+                    <form:options items="${isActive}"/>
+            </form:select>
+        </div>
+        <div class="form-group">
             Rola:<br>
             <form:select path="role">
                 <form:options items="${roles}"/>

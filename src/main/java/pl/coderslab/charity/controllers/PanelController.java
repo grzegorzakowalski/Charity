@@ -32,7 +32,8 @@ public class PanelController {
     private final DonationRepository donationRepository;
     private final InstitutionRepository institutionRepository;
     private final CategoryRepository categoryRepository;
-    private final List<String> roles = Stream.of("ROLE_ADMIN","ROLE_USER").toList();
+    private final List<String> ROLES = Stream.of("ROLE_ADMIN","ROLE_USER").toList();
+    private final List<Boolean> IS_ACTIVE = Stream.of(true,false).toList();
 
     @GetMapping("/user")
     public String userPanelView(@AuthenticationPrincipal CurrentUser currentUser, Model model){
@@ -73,7 +74,7 @@ public class PanelController {
     @GetMapping("/user/add")
     public String addUserView(Model model, @RequestParam(name = "exist", required = false) String exist){
         model.addAttribute("user", new User());
-        model.addAttribute("roles", roles);
+        model.addAttribute("roles", ROLES);
         model.addAttribute("exist", exist);
         return "panel-user-add";
     }
@@ -84,6 +85,7 @@ public class PanelController {
             return "redirect:/panel/user/add?exist=true";
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setActive(true);
         userRepository.save(user);
         return "redirect:/panel/crud?msg=user_added";
     }
@@ -91,7 +93,8 @@ public class PanelController {
     @GetMapping("/user/modify")
     public String modifyUserView(Model model, @RequestParam(name = "id") long id){
         model.addAttribute("user", userRepository.findById(id).orElse(null));
-        model.addAttribute("roles", roles);
+        model.addAttribute("roles", ROLES);
+        model.addAttribute("isActive", IS_ACTIVE);
         return "panel-user-modify";
     }
 
