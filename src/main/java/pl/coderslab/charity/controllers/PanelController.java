@@ -152,4 +152,13 @@ public class PanelController {
         model.addAttribute("institution", institution);
         return "panel-institution-modify";
     }
+
+    @PostMapping("/institution/modify")
+    public String modifyInstitution(Institution institution){
+        if( !institutionRepository.existsById(institution.getId())){
+            return "redirect:/panel/crud?error=institution_not_found";
+        }
+        institutionRepository.save(institution);
+        return "redirect:/panel/crud?msg=institution_modified";
+    }
 }
