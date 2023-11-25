@@ -170,4 +170,14 @@ public class PanelController {
         model.addAttribute("institution", institution);
         return "panel-institution-delete";
     }
+
+    @PostMapping("/institution/delete")
+    public String deleteInstitution(@RequestParam( name = "id") long id){
+        Institution institution = institutionRepository.findById(id).orElse(null);
+        if( institution == null){
+            return "redirect:/panel/crud?error=institution_not_found";
+        }
+        institutionRepository.deleteById(id);
+        return "redirect:/panel/crud?msg=institution_deleted";
+    }
 }
