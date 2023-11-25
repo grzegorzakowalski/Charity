@@ -19,7 +19,6 @@ import pl.coderslab.charity.security.CurrentUser;
 import pl.coderslab.charity.services.UserService;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 
@@ -160,5 +159,15 @@ public class PanelController {
         }
         institutionRepository.save(institution);
         return "redirect:/panel/crud?msg=institution_modified";
+    }
+
+    @GetMapping("/institution/delete")
+    public String deleteInstitutionConfirmationView(@RequestParam(name = "id") long id, Model model){
+        Institution institution = institutionRepository.findById(id).orElse(null);
+        if( institution == null){
+            return "redirect:/panel/crud?error=institution_not_found";
+        }
+        model.addAttribute("institution", institution);
+        return "panel-institution-delete";
     }
 }
