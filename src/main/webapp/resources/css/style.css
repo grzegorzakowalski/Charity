@@ -1841,3 +1841,8 @@ footer .bottom-line--icons a img {
   font-size: medium;
   color: forestgreen;
 }
+
+.fail{
+  font-size: medium;
+  color: red;
+}

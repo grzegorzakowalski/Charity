@@ -22,6 +22,7 @@
 <section class="login-page">
     <div class="steps">
         <c:if test="${ msg != null}"><span class="success">${msg} successful</span></c:if>
+        <c:if test="${ error != null}"><span class="fail">${error}</span> </c:if>
         <h2>Lista użytkowników:</h2>
         <c:forEach items="${users}" var="user" varStatus="i">
         <div class="form-group form-group--inline admin">
