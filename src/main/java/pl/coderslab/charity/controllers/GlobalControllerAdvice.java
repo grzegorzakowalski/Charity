@@ -12,7 +12,7 @@ public class GlobalControllerAdvice {
     @ModelAttribute
     public void addCommonAttributes(Model model, @AuthenticationPrincipal CurrentUser currentUser){
         if( currentUser != null) {
-            model.addAttribute("user", currentUser.getUser());
+            model.addAttribute("currentUser", currentUser);
         }
     }
 }

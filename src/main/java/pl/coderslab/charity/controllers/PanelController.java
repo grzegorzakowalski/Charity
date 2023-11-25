@@ -78,7 +78,7 @@ public class PanelController {
     }
 
     @PostMapping("/user/add") // TODO fix relogging bug
-    public String addUser(@RequestParam User user){
+    public String addUser(User user){
         if( userRepository.findUserByUsername(user.getUsername()) != null){
             return "redirect:/panel/user/add?exist=true";
         }
