@@ -24,8 +24,8 @@
         <div class="form-group form-group--inline">
           <label>
               <span class="admin">${i.count}. Ilość worków: ${donation.quantity}, Kategorie: <c:forEach items="${donation.categories}" var="category">${category.name},&nbsp;</c:forEach>
-            Czy odebrane?<c:if test="${donation.isPicked}">tak</c:if><c:if test="${!donation.isPicked}">nie</c:if>, Kiedy <c:if test="${!donation.isPicked}">ma być</c:if> odebrane:
-                  ${donation.pickUpDate} ${donation.pickUpTime}.</span>
+            Czy odebrane? <c:if test="${donation.isPicked}">tak</c:if><c:if test="${!donation.isPicked}">nie</c:if>, Kiedy <c:if test="${!donation.isPicked}">ma być</c:if> odebrane:
+                  ${donation.pickUpDate} ${donation.pickUpTime}.</span>&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="<c:url value="/panel/donation/details?id=${donation.id}"/>"><button type="button" class="btn btn--small">Szczegóły</button> </a>
           </label>
         </div>
