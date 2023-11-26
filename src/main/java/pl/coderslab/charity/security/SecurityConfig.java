@@ -23,7 +23,7 @@ public class SecurityConfig {
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception{
         return http.authorizeRequests()
                 .antMatchers("/panel/crud","/panel/user/*","/panel/institution/**").hasRole("ADMIN")
-                .antMatchers("/panel/**").hasAnyRole("USER","ADMIN")
+                .antMatchers("/panel/**","/form").hasAnyRole("USER","ADMIN")
                 .anyRequest().permitAll()
                 .and()
                 .csrf().disable()
