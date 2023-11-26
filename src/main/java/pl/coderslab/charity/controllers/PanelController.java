@@ -50,6 +50,12 @@ public class PanelController {
         return "redirect:/panel/user";
     }
 
+    @GetMapping("/donations")
+    public String usersDonationSView(Model model, @AuthenticationPrincipal CurrentUser currentUser){
+        model.addAttribute("sortedDonations", userService.getUsersDonationsSorted(currentUser.getUser()));
+        return "panel-donations";
+    }
+
     @PostMapping("/password")
     public String changeUsersPassword(@AuthenticationPrincipal CurrentUser currentUser, @RequestParam(name = "password") String password){
         User user = currentUser.getUser();
