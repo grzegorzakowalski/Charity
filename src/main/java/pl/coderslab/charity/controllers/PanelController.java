@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.CategoryRepository;
+import pl.coderslab.charity.entities.Donation;
 import pl.coderslab.charity.entities.Institution;
 import pl.coderslab.charity.entities.User;
 import pl.coderslab.charity.repositories.DonationRepository;
@@ -54,6 +55,13 @@ public class PanelController {
     public String usersDonationSView(Model model, @AuthenticationPrincipal CurrentUser currentUser){
         model.addAttribute("sortedDonations", userService.getUsersDonationsSorted(currentUser.getUser()));
         return "panel-donations";
+    }
+
+    @GetMapping("/donation/details")
+    public String donationDetailsView(Model model, @RequestParam(name = "id")long id){
+        Donation donation = donationRepository.findById(id).orElse(null);
+        model.addAttribute("donation", donation);
+        return "panel-donation-details";
     }
 
     @PostMapping("/password")
