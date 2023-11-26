@@ -13,6 +13,8 @@ import pl.coderslab.charity.repositories.InstitutionRepository;
 import pl.coderslab.charity.repositories.UserRepository;
 import pl.coderslab.charity.security.CurrentUser;
 
+import java.time.LocalDateTime;
+
 @Controller
 @RequiredArgsConstructor
 public class DonationController {
@@ -32,6 +34,8 @@ public class DonationController {
 
     @PostMapping("/form")
     public String donationForm(Donation donation, @AuthenticationPrincipal CurrentUser currentUser){
+        donation.setIsPicked(false);
+        donation.setCreated(LocalDateTime.now());
         donation = donationRepository.save(donation);
         currentUser.getUser().getDonations().add(donation);
         userRepository.save(currentUser.getUser());
