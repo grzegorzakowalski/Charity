@@ -102,9 +102,10 @@
 
     </form>
     <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <br>
         <a href="<c:url value="/panel/crud"/>">
             <button class="btn" type="button">
-                Przejdź do zarządzania użytkownikami
+                Przejdź do panelu administratora
             </button>
         </a>
     </sec:authorize>
