@@ -6,6 +6,8 @@ import pl.coderslab.charity.entities.Donation;
 import pl.coderslab.charity.entities.User;
 import pl.coderslab.charity.repositories.UserRepository;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,5 +32,16 @@ public class UserService {
             all.removeIf( el -> Objects.equals(el.getId(), user.getId()));
         }
         return all;
+    }
+
+    public List<Donation> getUsersDonationsSorted(User user){
+        if (user.getDonations() == null){
+            return new ArrayList<>();
+        }
+        return user.getDonations().stream()
+                .sorted( Comparator.comparing(Donation::getIsPicked, Comparator.reverseOrder())
+                        .thenComparing(Donation::getPickUpDate)
+                        .thenComparing(Donation::getCreated))
+                .toList();
     }
 }
