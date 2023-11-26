@@ -1,18 +1,16 @@
 package pl.coderslab.charity.entities;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
 @Entity
-@Setter
-@Getter
+@Data
 public class Donation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,13 +33,8 @@ public class Donation {
     private LocalTime pickUpTime;
     @Column(name = "pick_up_comment")
     private String pickUpComment;
-    @Override
-    public String toString(){
-        StringBuilder categories = new StringBuilder("; ");
-        for (Category category : this.categories) {
-            categories.append(category.getName()).append(", ");
-        }
-        return "amount: " + quantity + categories + "for: " + institution.getName() + " when: " + pickUpDate.toString() + " " + pickUpTime.toString() + " where: "
-                + city + " " + street + " nr: " + phoneNumber;
-    }
+    @Column(name = "is_picked")
+    private Boolean isPicked;
+    private LocalDateTime created;
+
 }
