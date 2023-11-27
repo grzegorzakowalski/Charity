@@ -20,6 +20,7 @@ import pl.coderslab.charity.security.CurrentUser;
 import pl.coderslab.charity.services.UserService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 
@@ -62,6 +63,18 @@ public class PanelController {
         Donation donation = donationRepository.findById(id).orElse(null);
         model.addAttribute("donation", donation);
         return "panel-donation-details";
+    }
+
+    @PostMapping("/donations/details")
+    public String donationDetailsModification(@RequestParam(name = "id") long id,
+                                              @RequestParam(name = "isPicked")boolean isPicked){
+        Donation donation = donationRepository.findById(id).orElse(null);
+        if( donation == null){
+            return "redirect:/panel/donations";
+        }
+        donation.setIsPicked(isPicked);
+        donationRepository.save(donation);
+        return "redirect:/panel/donations";
     }
 
     @PostMapping("/password")
