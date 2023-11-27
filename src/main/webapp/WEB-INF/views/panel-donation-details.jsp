@@ -19,7 +19,7 @@
 <c:import url="header.jsp"/>
 <section class="form--steps">
     <div class="form--steps-container">
-        <form:form>
+        <form method="post">
         <div class="active">
             <h3>Detale Twojej darowizny</h3>
             <div class="summary">
@@ -29,15 +29,14 @@
                         <li>
                             <span class="icon icon-bag"></span>
                             <span class="summary--text">${donation.quantity} <c:if test="${donation.quantity > 1}">worki </c:if><c:if test="${donation.quantity == 1}">worek </c:if>
-                                <c:forEach items="${donation.categories}" var="category">
-                                    ${category.name},&nbsp;
-                                </c:forEach>
-                                dla dzieci</span>
+                                <c:forEach items="${donation.categories}" var="category" varStatus="i">
+                                    ${category.name}<c:if test="${!(donation.categories.size() == i.count)}">,&nbsp;</c:if>
+                                </c:forEach>.</span>
                         </li>
 
                         <li>
                             <span class="icon icon-hand"></span>
-                            <span class="summary--text">Dla fundacji ${donation.institution}</span>
+                            <span class="summary--text">Dla fundacji ${donation.institution.name}.</span>
                         </li>
                     </ul>
                 </div>
@@ -64,7 +63,19 @@
                 </div>
             </div>
         </div>
-        </form:form>
+            <c:if test="${!donation.isPicked}">
+                <div class="form-group form-group--inline active">
+                    <label>
+                        Czy kurier odebrał paczkę?
+                        <select name="isPicked">
+                            <option label="Tak" value="true"></option>
+                            <option label="Nie" value="false"></option>
+                        </select>
+                    </label>
+                </div>
+                <button class="btn btn--small" type="submit">Potwierdź</button>
+            </c:if>
+        </form>
     </div>
 </section>
 <c:import url="footer.jsp"/>
