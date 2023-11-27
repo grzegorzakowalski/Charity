@@ -17,7 +17,7 @@
     <sec:authorize access="isAuthenticated()">
         <ul class="nav--actions">
             <li class="logged-user">
-                Witaj ${currentUser.getUser().getFirstName()}
+                Witaj <sec:authentication property="principal.firstName"/>
                 <ul class="dropdown">
                     <li><a href="<c:url value="/panel/user"/>">Profil</a></li>
                     <li><a href="<c:url value="/panel/donations"/>">Moje zbiórki</a></li>
