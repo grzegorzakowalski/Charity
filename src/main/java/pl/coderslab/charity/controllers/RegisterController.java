@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.coderslab.charity.email.EmailServiceImpl;
 import pl.coderslab.charity.entities.User;
 import pl.coderslab.charity.repositories.UserRepository;
 
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 public class RegisterController {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final EmailServiceImpl emailService;
     @GetMapping("/register")
     public String registrationFormView(Model model, @RequestParam(required = false, name = "exist") String exist){
         model.addAttribute("user", new User());

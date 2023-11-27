@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.CategoryRepository;
+import pl.coderslab.charity.email.EmailServiceImpl;
 import pl.coderslab.charity.entities.Donation;
 import pl.coderslab.charity.entities.Institution;
 import pl.coderslab.charity.entities.User;
@@ -20,7 +21,6 @@ import pl.coderslab.charity.security.CurrentUser;
 import pl.coderslab.charity.services.UserService;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 
@@ -34,6 +34,7 @@ public class PanelController {
     private final DonationRepository donationRepository;
     private final InstitutionRepository institutionRepository;
     private final CategoryRepository categoryRepository;
+    private final EmailServiceImpl emailService;
     private final List<String> ROLES = Stream.of("ROLE_ADMIN","ROLE_USER").toList();
     private final List<Boolean> IS_ACTIVE = Stream.of(true,false).toList();
 
