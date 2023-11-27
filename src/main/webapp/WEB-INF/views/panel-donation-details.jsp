@@ -58,6 +58,7 @@
                                                             <li>${donation.pickUpDate}</li>
                                                             <li>${donation.pickUpTime}</li>
                                                             <li>${donation.pickUpComment}</li>
+                            <li>Czy odebrany? <c:if test="${donation.isPicked}">Tak</c:if><c:if test="${!donation.isPicked}">Nie</c:if> </li>
                         </ul>
                     </div>
                 </div>
