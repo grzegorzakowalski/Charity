@@ -19,7 +19,7 @@
 <c:import url="header.jsp"/>
 <section class="form--steps">
     <div class="form--steps-container">
-        <form method="post">
+        <form method="post" action="<c:url value="/panel/donations/details"/>">
         <div class="active">
             <h3>Detale Twojej darowizny</h3>
             <div class="summary">
@@ -72,6 +72,7 @@
                             <option label="Tak" value="true"></option>
                             <option label="Nie" value="false"></option>
                         </select>
+                        <input type="hidden" name="id" value="${donation.id}">
                     </label>
                 </div>
                 <button class="btn btn--small" type="submit">Potwierdź</button>
