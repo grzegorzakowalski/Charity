@@ -22,4 +22,7 @@ public class User {
     private String role;
     @Column(name = "is_active")
     private boolean isActive;
+    private String UUID;
+    @Column(name = "email_verified")
+    private Boolean emailVerified;
 }
