@@ -5,4 +5,6 @@ import pl.coderslab.charity.entities.User;
 
 public interface UserRepository extends JpaRepository<User,Long> {
     User findUserByUsername(String username);
+
+    User findUserByUUID(String UUID);
 }
