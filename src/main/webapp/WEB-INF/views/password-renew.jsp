@@ -26,10 +26,10 @@
         <div class="form-group">
             <label>
                 <span class="admin">Podaj adres email:</span>
-                <input type="email" name="username" placeholder="Email" />
-            </label>
+                <input type="email" name="email" placeholder="Email" />
+            </label><br>
+            <c:if test="${ msg != null}"><span class="success">${msg}</span></c:if>
         </div>
-        <c:if test="${ msg != null}"><span class="success">${msg}</span></c:if>
         <div class="form-group form-group--buttons">
             <button class="btn" type="submit">Przypomnij hasło</button>
         </div>
