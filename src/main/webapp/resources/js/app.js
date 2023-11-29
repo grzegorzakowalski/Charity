@@ -233,11 +233,12 @@ document.addEventListener("DOMContentLoaded", function() {
     const password = document.querySelector("#original");
     const confirmPassword = document.querySelector("#confirm");
     if( password.value === confirmPassword.value){
-      password.parentElement.parentElement.submit();
+      document.querySelector("#password-form").submit();
     } else {
-      if( confirmPassword.parentElement.children.length < 2){
+      if( !confirmPassword.parentElement.querySelector('span')){
         const span = document.createElement("span");
         span.innerText = "Hasła nie są identyczne";
+        span.classList.add('fail');
         confirmPassword.parentElement.appendChild(span);
       }
     }

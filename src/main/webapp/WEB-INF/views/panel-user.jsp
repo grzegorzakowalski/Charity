@@ -80,7 +80,7 @@
     </form:form>
 
 
-    <form method="post" action="<c:url value="/panel/password"/>">
+    <form method="post" id="password-form" action="<c:url value="/panel/password"/>">
         <div class="steps">
             <h2>Zmień hasło:</h2>
             <div class="form-group form-group--inline">
