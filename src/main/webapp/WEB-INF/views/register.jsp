@@ -22,7 +22,7 @@
 </header>
 
 <section class="login-page">
-    <h2>Załóż konto</h2>
+    <h2>Załóż konto-${username}-${password}</h2>
     <form:form method="post" modelAttribute="user">
         <div class="form-group">
             <form:input path="username" placeholder="Email"/><c:if test="${exist != null}"><span>Podany email jest już w użyciu</span></c:if>
