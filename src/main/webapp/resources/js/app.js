@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function() {
     new FormSteps(form);
   }
 
-  // Registration validation
+  // Are both passwords the same validation
   const registrationButton = document.querySelector("#register");
   registrationButton.addEventListener("click",e =>{
     e.preventDefault();
