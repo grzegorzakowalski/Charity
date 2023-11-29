@@ -2,6 +2,7 @@ package pl.coderslab.charity.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.Banner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,11 +23,18 @@ public class PasswordRenewController {
 
     private final UserRepository userRepository;
     private final EmailServiceImpl emailService;
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/renew")
     public String forgotPasswordView(Model model,
                                      @RequestParam(name = "msg", required = false)String msg){
-        model.addAttribute("msg", msg != null ? msg.replaceAll("_", " ") : null);
+        if( msg != null){
+            if(msg.equals("send")){
+                msg = "Wiadomość email została wysłana na podany adres";
+            }
+            msg = msg.replaceAll("_", " ");
+            model.addAttribute("msg", msg);
+        }
         return "password-renew";
     }
 
@@ -43,7 +51,7 @@ public class PasswordRenewController {
         user.setUUID(UUID.randomUUID().toString());
         emailService.sendSimpleMessage(email, "Resetowanie hasła","Kliknij w ten link aby przejść do formularza resetowania hasła: " + request.getRequestURL() + "/new?UUID=" + user.getUUID());
         userRepository.save(user);
-        return "redirect:/password/renew?msg=Wysłano_email_z_linkiem_do_zresetowania_hasła";
+        return "redirect:/password/renew?msg=send";
     }
 
     @GetMapping("/renew/new")
@@ -58,5 +66,18 @@ public class PasswordRenewController {
         }
         model.addAttribute("uuid",uuid);
         return "password-renew-new";
+    }
+
+    @PostMapping("/renew/new")
+    public String createNewPassword(@RequestParam(name = "uuid")String uuid,
+                                    @RequestParam(name = "password")String password){
+        User user = userRepository.findUserByUUID(uuid);
+        if( user == null){
+            return "redirect:/password/renew?msg=Nieznany_problem";
+        }
+        user.setPassword(passwordEncoder.encode(password));
+        user.setUUID("");
+        userRepository.save(user);
+        return "redirect:/login";
     }
 }
