@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.coderslab.charity.entities.Category;
 import pl.coderslab.charity.repositories.CategoryRepository;
 import pl.coderslab.charity.email.EmailServiceImpl;
 import pl.coderslab.charity.entities.Donation;
@@ -210,5 +211,11 @@ public class PanelController {
         }
         institutionRepository.deleteById(id);
         return "redirect:/panel/crud?msg=institution_deleted";
+    }
+
+    @GetMapping("category/add")
+    public String addCategoryView(Model model){
+        model.addAttribute("category", new Category());
+        return "panel-category-add";
     }
 }
