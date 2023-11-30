@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.coderslab.charity.CategoryRepository;
+import pl.coderslab.charity.repositories.CategoryRepository;
 import pl.coderslab.charity.email.EmailServiceImpl;
 import pl.coderslab.charity.entities.Donation;
 import pl.coderslab.charity.entities.Institution;
