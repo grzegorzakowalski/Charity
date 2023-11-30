@@ -253,4 +253,14 @@ public class PanelController {
         model.addAttribute("category", category);
         return "panel-category-delete";
     }
+
+    @PostMapping("/category/delete")
+    public String deleteCategoryHandler(@RequestParam( name = "id") long id){
+        Category category = categoryRepository.findById(id).orElse(null);
+        if( category == null){
+            return "redirect:/panel/crud?error=category_not_found";
+        }
+        categoryRepository.delete(category);
+        return "redirect:/panel/crud?msg=category_deleted";
+    }
 }
