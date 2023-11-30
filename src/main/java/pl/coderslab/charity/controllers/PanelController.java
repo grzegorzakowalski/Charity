@@ -224,4 +224,14 @@ public class PanelController {
         categoryRepository.save(category);
         return "redirect:/panel?crud?msg=category_added";
     }
+
+    @GetMapping("/category/modify")
+    public String modifyCategoryView(Model model, @RequestParam(name = "id") long id){
+        Category category = categoryRepository.findById(id).orElse(null);
+        if( category == null){
+            return "redirect:/panel/crud?error=category_not_found";
+        }
+        model.addAttribute("category", category);
+        return "panel-category-modify";
+    }
 }
