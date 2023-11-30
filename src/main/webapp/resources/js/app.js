@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function() {
     updateForm() {
       this.$step.innerText = this.currentStep;
 
-      // TODO: Validation
+      //TODO Validation
 
       this.slides.forEach(slide => {
         slide.classList.remove("active");
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
-      // TODO: get data from inputs and show them in summary
+
       // finding all data to put into summary
       const categories = document.querySelectorAll('[name="categories"]:checked');
       const bags = document.querySelector('#quantity');
@@ -226,23 +226,48 @@ document.addEventListener("DOMContentLoaded", function() {
     new FormSteps(form);
   }
 
+  function getSpan(msg){
+    const spanElement = document.createElement('span');
+    spanElement.id = 'error-msg';
+    spanElement.classList.add('fail');
+    spanElement.innerText = msg;
+    return spanElement;
+  }
+
+  function addSpanTo(element, msg){
+    const prevMsg = element.querySelector("#error-msg");
+    if(prevMsg){
+      element.removeChild(prevMsg);
+      element.appendChild(getSpan(msg));
+    }else {
+      element.appendChild(getSpan(msg));
+    }
+  }
+
+
+
   // Are both passwords the same validation
   const registrationButton = document.querySelector("#register");
   registrationButton.addEventListener("click",e =>{
     e.preventDefault();
     const password = document.querySelector("#original");
     const confirmPassword = document.querySelector("#confirm");
-    if( password.value.toString().match("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")){
-      if( password.value === confirmPassword.value) {
-        document.querySelector("#password-form").submit();
-      }
+    const passwordValue = password.value.toString();
+    const parentElement = password.parentElement;
+    if(!passwordValue.match('^.{8,16}$')){
+      addSpanTo(parentElement,"Hasło jest za krótkie");
+    } else if(!passwordValue.match('(?=.*[a-z])')){
+      addSpanTo(parentElement,"Potrzeba przynajmniej jednej małej litery");
+    } else if(!passwordValue.match('(?=.*[A-Z])')){
+      addSpanTo(parentElement,"Potrzeba przynajmniej jednej dużej litery");
+    } else if(!passwordValue.match('(?=.*\\d)')){
+      addSpanTo(parentElement,"Potrzeba jednej liczby");
+    } else if(!passwordValue.match('(?=.*[!@#$%^&+=])')){
+      addSpanTo(parentElement,"Potrzeba jednego znaku specjalnego");
+    } else if(password.value !== confirmPassword.value){
+      addSpanTo(parentElement,"Hasła nie są identyczne");
     } else {
-      if( !confirmPassword.parentElement.querySelector('span')){
-        const span = document.createElement("span");
-        span.innerText = "Hasła nie są identyczne"; //TODO popraw wyświetlanie wiadomości
-        span.classList.add('fail');
-        confirmPassword.parentElement.appendChild(span);
-      }
+      document.querySelector("#password-form").submit();
     }
   });
 });
