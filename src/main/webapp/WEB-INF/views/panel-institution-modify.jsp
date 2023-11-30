@@ -22,7 +22,7 @@
 </header>
 
 <section class="login-page">
-    <h2>Zmodyfikuj użytkownika</h2>
+    <h2>Zmodyfikuj instytucję</h2>
     <form:form method="post" modelAttribute="institution">
       <div class="form-group">
         Nazwa:<br>

@@ -20,7 +20,7 @@
     <c:import url="nav.jsp"/>
 </header>
 <section class="login-page">
-    <h2>Czy na pewno chcesz usunąć tego użytkownika?</h2>
+    <h2>Czy na pewno chcesz usunąć tę instytucję?</h2>
     <div class="admin">
         ${institution.name} - ${institution.description}<br>
     </div>
