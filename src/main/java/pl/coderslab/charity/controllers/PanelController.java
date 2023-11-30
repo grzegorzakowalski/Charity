@@ -218,4 +218,10 @@ public class PanelController {
         model.addAttribute("category", new Category());
         return "panel-category-add";
     }
+
+    @PostMapping("/category/add")
+    public String addCategoryHandler(Category category){
+        categoryRepository.save(category);
+        return "redirect:/panel?crud?msg=category_added";
+    }
 }
