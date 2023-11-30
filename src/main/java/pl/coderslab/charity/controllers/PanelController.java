@@ -243,4 +243,14 @@ public class PanelController {
         categoryRepository.save(category);
         return "redirect:/panel/crud?msg=category_modified";
     }
+
+    @GetMapping("/category/delete")
+    public String deleteCategoryConfirmationView(@RequestParam(name = "id") long id, Model model){
+        Category category = categoryRepository.findById(id).orElse(null);
+        if( category == null){
+            return "redirect:/panel/crud?error=category_not_found";
+        }
+        model.addAttribute("category", category);
+        return "panel-category-delete";
+    }
 }
