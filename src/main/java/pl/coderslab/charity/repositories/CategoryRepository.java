@@ -1,4 +1,4 @@
-package pl.coderslab.charity;
+package pl.coderslab.charity.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import pl.coderslab.charity.entities.Category;

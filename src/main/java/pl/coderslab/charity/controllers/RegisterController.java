@@ -1,7 +1,6 @@
 package pl.coderslab.charity.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +12,6 @@ import pl.coderslab.charity.entities.User;
 import pl.coderslab.charity.repositories.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.UUID;
 
