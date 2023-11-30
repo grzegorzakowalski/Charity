@@ -232,12 +232,14 @@ document.addEventListener("DOMContentLoaded", function() {
     e.preventDefault();
     const password = document.querySelector("#original");
     const confirmPassword = document.querySelector("#confirm");
-    if( password.value === confirmPassword.value){
-      document.querySelector("#password-form").submit();
+    if( password.value.toString().match("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$")){
+      if( password.value === confirmPassword.value) {
+        document.querySelector("#password-form").submit();
+      }
     } else {
       if( !confirmPassword.parentElement.querySelector('span')){
         const span = document.createElement("span");
-        span.innerText = "Hasła nie są identyczne";
+        span.innerText = "Hasła nie są identyczne"; //TODO popraw wyświetlanie wiadomości
         span.classList.add('fail');
         confirmPassword.parentElement.appendChild(span);
       }
