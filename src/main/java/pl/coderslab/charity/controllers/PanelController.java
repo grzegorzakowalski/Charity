@@ -234,4 +234,13 @@ public class PanelController {
         model.addAttribute("category", category);
         return "panel-category-modify";
     }
+
+    @PostMapping("/category/modify")
+    public String modifyCategoryHandler(Category category){
+        if( !categoryRepository.existsById(category.getId())){
+            return "redirect:/panel/crud?error=category_not_found";
+        }
+        categoryRepository.save(category);
+        return "redirect:/panel/crud?msg=category_modified";
+    }
 }
