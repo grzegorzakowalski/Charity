@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.entities.*;
 import pl.coderslab.charity.repositories.*;
-import pl.coderslab.charity.email.EmailServiceImpl;
 import pl.coderslab.charity.security.CurrentUser;
 import pl.coderslab.charity.services.UserService;
 
@@ -279,5 +278,22 @@ public class PanelController {
     public String donationModifyHandler(Donation donation){
         donationRepository.save(donation);
         return "redirect:/panel/crud?msg=donation_modified";
+    }
+
+    @GetMapping("/contactmsg/view")
+    public String contactMSGView(Model model,
+                                 @RequestParam("id")long id){
+        ContactMSG contactMSG = contactMSGRepository.findById(id).orElse(null);
+        if (contactMSG == null){
+            return "redirect:/panel/crud?error=contactMSG_not_found";
+        }
+        model.addAttribute("contactMSG", contactMSG);
+        return "panel-contactmsg-view";
+    }
+
+    @PostMapping("/contactmsg/view")
+    public String contactMSGArchivedHandler(ContactMSG contactMSG){
+        contactMSGRepository.save(contactMSG);
+        return "redirect:/panel/crud?msg=contact_message_" + (contactMSG.getArchived() ? "archived" : "un_archived");
     }
 }
