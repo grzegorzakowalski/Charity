@@ -56,11 +56,9 @@
             <div class="form-group form-group--inline">
                     ${i.count}. ${donation}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="<c:url value="/panel/donation/modify?id=${donation.id}"/>"><button type="button" class="btn btn--small">Modyfikuj</button></a>&nbsp;&nbsp;
-                <a href="<c:url value="/panel/donation/delete?id=${donation.id}"/>"><button type="button" class="btn btn--small btn--highlighted btn--delete" >Usuń</button></a>
-            </div>
+                </div>
             <br>
         </c:forEach>
-        <a href="<c:url value="/panel/donation/add"/>"><button class="btn">Dodaj dotację</button> </a>
     </div>
 </section>
 <section class="login-page">
