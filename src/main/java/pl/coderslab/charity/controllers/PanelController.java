@@ -263,4 +263,17 @@ public class PanelController {
         categoryRepository.delete(category);
         return "redirect:/panel/crud?msg=category_deleted";
     }
+
+    @GetMapping("/donation/modify")
+    public String donationModifyView(@RequestParam(name = "id")long id,
+                                     Model model){
+        Donation donation = donationRepository.findById(id).orElse(null);
+        if( donation == null){
+            return "redirect:/panel/crud?error=donation_not_found";
+        }
+        model.addAttribute("donation", donation);
+        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("institutions", institutionRepository.findAll());
+        return "panel-donation-modify";
+    }
 }
