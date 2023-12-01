@@ -1,9 +1,12 @@
 package pl.coderslab.charity.entities;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "contact_messages")
+@Data
 public class ContactMSG {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
