@@ -55,7 +55,6 @@
                 </label>
             </div>
         </c:forEach>
-        <form:hidden path="id"/>
         <h3 class="admin">Modyfikuj adres oraz termin odbioru rzecz przez kuriera:</h3>
 
         <div class="form-section form-section--columns">
@@ -108,6 +107,11 @@
                 </div>
             </div>
         </div>
+        <div class="form-group admin">
+            Czy została odebrana?:
+            <form:checkbox path="isPicked"/>
+        </div>
+        <form:hidden path="id"/>
         <div class="form-group form-group--buttons">
             <button class="btn" type="submit">Zmodyfikuj dotację</button>
         </div>
