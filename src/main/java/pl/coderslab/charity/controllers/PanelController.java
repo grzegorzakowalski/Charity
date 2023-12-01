@@ -276,4 +276,10 @@ public class PanelController {
         model.addAttribute("institutions", institutionRepository.findAll());
         return "panel-donation-modify";
     }
+
+    @PostMapping("/donation/modify")
+    public String donationModifyHandler(Donation donation){
+        donationRepository.save(donation);
+        return "redirect:/panel/crud?msg=donation_modified";
+    }
 }
