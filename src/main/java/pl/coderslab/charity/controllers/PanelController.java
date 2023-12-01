@@ -9,18 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.coderslab.charity.entities.Category;
-import pl.coderslab.charity.repositories.CategoryRepository;
+import pl.coderslab.charity.entities.*;
+import pl.coderslab.charity.repositories.*;
 import pl.coderslab.charity.email.EmailServiceImpl;
-import pl.coderslab.charity.entities.Donation;
-import pl.coderslab.charity.entities.Institution;
-import pl.coderslab.charity.entities.User;
-import pl.coderslab.charity.repositories.DonationRepository;
-import pl.coderslab.charity.repositories.InstitutionRepository;
-import pl.coderslab.charity.repositories.UserRepository;
 import pl.coderslab.charity.security.CurrentUser;
 import pl.coderslab.charity.services.UserService;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -35,7 +30,7 @@ public class PanelController {
     private final DonationRepository donationRepository;
     private final InstitutionRepository institutionRepository;
     private final CategoryRepository categoryRepository;
-    private final EmailServiceImpl emailService;
+    private final ContactMSGRepository contactMSGRepository;
     private final List<String> ROLES = Stream.of("ROLE_ADMIN","ROLE_USER").toList();
     private final List<Boolean> IS_ACTIVE = Stream.of(true,false).toList();
 
@@ -97,6 +92,9 @@ public class PanelController {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("msg", msg != null ? msg.replaceAll("_", " ") : null);
         model.addAttribute("error", error != null ? error.replaceAll("_", " ") : null);
+        model.addAttribute("contactMSGs", contactMSGRepository.findAll().stream()
+                .sorted(Comparator.comparing(ContactMSG::getArchived))
+                .toList());
         return "panel-crud";
     }
 

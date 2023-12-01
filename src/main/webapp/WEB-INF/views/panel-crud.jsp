@@ -75,6 +75,18 @@
         <a href="<c:url value="/panel/category/add"/>"><button class="btn">Dodaj kategorię</button> </a>
     </div>
 </section>
+<section class="login-page">
+    <div class="steps">
+        <h2>Lista dotacji:</h2>
+        <c:forEach items="${contactMSGs}" var="contactMSG" varStatus="i">
+            <div class="form-group form-group--inline <c:if test="${!contactMSG.archived}">admin</c:if>">
+                    ${i.count}. ${contactMSG.name} ${contactMSG.surname} - ${contactMSG.msg.substring(0,contactMSG.msg.length() > 8 ? 8: contactMSG.msg.length())}${contactMSG.msg.length() > 8? "..." : ""}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="<c:url value="/panel/contactmsg/view?id=${contactMSG.id}"/>"><button type="button" class="btn btn--small">Zobacz</button></a>&nbsp;&nbsp;
+            </div>
+            <br>
+        </c:forEach>
+    </div>
+</section>
 
 <c:import url="footer.jsp"/>
 </body>
